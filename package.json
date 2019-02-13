@@ -1,0 +1,9 @@
+{
+  "name": "nuber-server",
+  "version": "1.0.0",
+  "description": "Nuber - Uber clone built with Typescript, Nodejs, Graphql, Apollo",
+  "main": "index.js",
+  "repository": "git@github.com:jmpark6846/nuber-server.git",
+  "author": "jmpark6846 <jmpark6846@gmail.com>",
+  "license": "MIT"
+}
