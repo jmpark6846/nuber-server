@@ -2,6 +2,8 @@ type Greeting {
   text: String!
   error: Boolean!
 }
+
 type Query {
   sayBye(name: String!): Greeting!
+  sayHello: String!
 }

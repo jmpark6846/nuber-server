@@ -1,6 +1,11 @@
+import { Greeting, SayByeQueryArgs } from "src/types/graphql";
+
 const resolvers = {
     Query: {
-      sayBye: () => "Hey hello how are ya"
+      sayBye: (_, args: SayByeQueryArgs): Greeting =>({
+        text: `bye ${args.name}`,
+        error: false
+      })
     }
   };
   
