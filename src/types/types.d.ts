@@ -1,1 +1,3 @@
-export type verificationTarget = "EMAIL" | "PASSWORD";
+const EMAIL = "EMAIL";
+const PHONE = "PHONE";
+export type verificationTarget = EMAIL | PHONE;
