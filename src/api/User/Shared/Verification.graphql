@@ -1,0 +1,13 @@
+type Verification {
+  id: Int!
+  target: String! # phone, email
+  payload: String! # phone number 혹은 email
+  key: String! # 인증번호
+  used: Boolean! # 사용됬는지 여부
+  createdAt: String!
+  updatedAt: String!
+}
+
+type Query {
+  verification: Verification
+}

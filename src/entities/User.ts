@@ -1,12 +1,17 @@
+import bcrypt from "bcrypt";
 import { IsEmail } from "class-validator";
 import {
   BaseEntity,
+  BeforeInsert,
+  BeforeUpdate,
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
+
+const BCRYPT_ROUNDS = 10;
 
 // 유저 엔티티
 // 패스워드는 암호화해서 저장한다. 만약 사용자가 로그인하면, 입력한 비밀번호를 암호화한 후 그 값이 DB에 저장된 암호화된 비밀번호 값과 일치하는지 검사한다.
@@ -70,6 +75,23 @@ class User extends BaseEntity {
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
   }
+
+  public comparePassword(password: string): Promise<boolean> { 
+    return bcrypt.compare(password, this.password)
+  }
+
+  @BeforeInsert()
+  @BeforeUpdate()
+  async setPassword(): Promise<void> {
+    if(this.password){
+      const hashedPassword = await this.hashPassword(this.password)
+      this.password = hashedPassword;
+    }
+  }
+
+  private hashPassword(password: string): Promise<string> {
+    return bcrypt.hash(password, BCRYPT_ROUNDS);
+  } 
 }
 
 export default User;
