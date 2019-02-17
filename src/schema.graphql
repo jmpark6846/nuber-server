@@ -9,6 +9,27 @@ type Place {
   updatedAt: String
 }
 
+type Query {
+  place: Place!
+  user: User
+  verification: Verification
+}
+
+type Ride {
+  id: Int!
+  status: String!
+  pickUpAddress: String!
+  pickUpLat: Float!
+  pickUpLng: Float!
+  dropOffLat: Float!
+  dropOffLng: Float!
+  price: Float!
+  duration: String!
+  distance: String!
+  createdAt: String!
+  updatedAt: String
+}
+
 type User {
   id: Int!
   email: String
@@ -29,11 +50,6 @@ type User {
   lastLng: Float
   lastLat: Float
   lastOrientation: Float
-}
-
-type Query {
-  user: User
-  verification: Verification
 }
 
 type Verification {

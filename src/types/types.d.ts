@@ -1,3 +1,7 @@
-export const EMAIL = "EMAIL";
-export const PHONE = "PHONE";
-export type verificationTarget = EMAIL | PHONE;
+export type verificationTarget = "EMAIL" | "PHONE";
+export type rideStatus =
+  | "ACCEPTED"
+  | "FINISHED"
+  | "CANCELED"
+  | "REQUESTING"
+  | "ONROUTE";

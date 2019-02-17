@@ -1,3 +1,5 @@
+import { verificationTarget } from "../types/types";
+
 import {
   BaseEntity,
   BeforeInsert,
@@ -7,7 +9,8 @@ import {
   PrimaryGeneratedColumn,
   UpdateDateColumn
 } from "typeorm";
-import { EMAIL, PHONE, verificationTarget } from "../types/types";
+const EMAIL = "EMAIL";
+const PHONE = "PHONE";
 
 @Entity()
 class Verification extends BaseEntity {
