@@ -5,8 +5,10 @@ import {
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
-  UpdateDateColumn
+  UpdateDateColumn,
+  ManyToOne
 } from "typeorm";
+import User from "./User";
 
 @Entity()
 class Ride extends BaseEntity {
@@ -57,6 +59,12 @@ class Ride extends BaseEntity {
   @Column({ type: "boolean" })
   isFavorite: number;
 
+  @ManyToOne(type => User, user => user.rideAsPassenger)
+  passenger: User;
+
+  @ManyToOne(type => User, user => user.rideAsDriver)
+  driver: User;
+  
   @CreateDateColumn()
   createdAt: string;
 

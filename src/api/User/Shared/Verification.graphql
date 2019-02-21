@@ -6,6 +6,7 @@ type Verification {
   used: Boolean! # 사용됬는지 여부
   createdAt: String!
   updatedAt: String
+  user: User
 }
 
 type Query {
