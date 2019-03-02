@@ -26,9 +26,9 @@ class User extends BaseEntity {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ type: "text", unique: true })
+  @Column({ type: "text", nullable: true})
   @IsEmail()
-  email: string;
+  email: string |  null;
 
   @Column({ type: "boolean", default: false })
   verifiedEmail: boolean;
@@ -39,13 +39,13 @@ class User extends BaseEntity {
   @Column({ type: "text" })
   lastName: string;
 
-  @Column({ type: "int" })
+  @Column({ type: "int", nullable: true })
   age: number;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   password: string;
 
-  @Column({ type: "text" })
+  @Column({ type: "text", nullable: true })
   phoneNumber: string;
 
   @Column({ type: "boolean", default: false })
@@ -54,11 +54,8 @@ class User extends BaseEntity {
   @Column({ type: "text" })
   profilePhoto: string;
 
-  @CreateDateColumn()
-  createdAt: string;
-
-  @UpdateDateColumn()
-  updatedAt: string;
+  @Column({ type: "text", nullable: true })
+  fbId: string;
 
   @Column({ type: "boolean", default: false })
   isDriving: boolean;
@@ -79,41 +76,46 @@ class User extends BaseEntity {
   lastOrientation: number;
 
   @ManyToOne(type => Chat, chat => chat.participants)
-  chat: Chat;  
-  
+  chat: Chat;
+
   @OneToMany(type => Message, message => message.user)
-  messages: Message[]
+  messages: Message[];
 
   @OneToMany(type => Ride, ride => ride.passenger)
-  rideAsPassenger: Ride[] 
+  rideAsPassenger: Ride[];
 
   @OneToMany(type => Ride, ride => ride.driver)
-  rideAsDriver: Ride[] 
+  rideAsDriver: Ride[];
 
   @OneToMany(type => Verification, verification => verification.user)
-  verifications: Verification[]
+  verifications: Verification[];
 
+  @CreateDateColumn()
+  createdAt: string;
+
+  @UpdateDateColumn()
+  updatedAt: string;
 
   get fullName(): string {
     return `${this.firstName} ${this.lastName}`;
   }
 
-  public comparePassword(password: string): Promise<boolean> { 
-    return bcrypt.compare(password, this.password)
+  public comparePassword(password: string): Promise<boolean> {
+    return bcrypt.compare(password, this.password);
   }
 
   @BeforeInsert()
   @BeforeUpdate()
   async setPassword(): Promise<void> {
-    if(this.password){
-      const hashedPassword = await this.hashPassword(this.password)
+    if (this.password) {
+      const hashedPassword = await this.hashPassword(this.password);
       this.password = hashedPassword;
     }
   }
 
   private hashPassword(password: string): Promise<string> {
     return bcrypt.hash(password, BCRYPT_ROUNDS);
-  } 
+  }
 }
 
 export default User;

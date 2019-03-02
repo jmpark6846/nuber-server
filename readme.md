@@ -5,7 +5,7 @@ Typescript, Nodejs, Graphql, Apollo로 만든 Uber 클론
 
 ### Public Resolvers
 
-- [ ] 페이스북 로그인 / 회원가입
+- [x] 페이스북 로그인 / 회원가입
 - [ ] 이메일 로그인 / 회원가입 
 - [ ] 인증 문자 보내기
 - [ ] 문자 인증 완료 
@@ -13,6 +13,8 @@ Typescript, Nodejs, Graphql, Apollo로 만든 Uber 클론
 
 ### Private Resolvers 
 
+- [ ] Token 생성하기
+- [ ] Token 인증하기 
 - [ ] 이메일 인증하기 
 - [ ] 사용자 프로필 조회 
 - [ ] 사용자 프로필 업데이트 
