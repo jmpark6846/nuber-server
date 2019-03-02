@@ -11,7 +11,7 @@ import {
   ManyToOne
 } from "typeorm";
 import User from "./User";
-import { userInfo } from "os";
+
 const EMAIL = "EMAIL";
 const PHONE = "PHONE";
 
@@ -23,7 +23,7 @@ class Verification extends BaseEntity {
   target: verificationTarget;
 
   @Column({ type: "text" })
-  payload: string;
+  payload: string;  
 
   @Column({ type: "text" })
   key: string;
