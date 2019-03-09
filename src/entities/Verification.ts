@@ -1,5 +1,3 @@
-import { verificationTarget } from "../types/types";
-
 import {
   BaseEntity,
   BeforeInsert,
@@ -8,9 +6,9 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  ManyToOne
-} from "typeorm";
-import User from "./User";
+} from 'typeorm';
+
+import { verificationTarget } from '../types/types';
 
 const EMAIL = "EMAIL";
 const PHONE = "PHONE";
@@ -23,11 +21,11 @@ class Verification extends BaseEntity {
   target: verificationTarget;
 
   @Column({ type: "text" })
-  payload: string;  
+  payload: string;
 
   @Column({ type: "text" })
   key: string;
-  
+
   @CreateDateColumn()
   createdAt: string;
 
@@ -38,8 +36,10 @@ class Verification extends BaseEntity {
   createKey(): void {
     if (this.target === PHONE) {
       this.key = Math.floor(Math.random() * 100000).toString();
-    }else if(this.target === EMAIL){
-      this.key = Math.random().toString(36).substr(2);
+    } else if (this.target === EMAIL) {
+      this.key = Math.random()
+        .toString(36)
+        .substr(2);
     }
   }
 }
