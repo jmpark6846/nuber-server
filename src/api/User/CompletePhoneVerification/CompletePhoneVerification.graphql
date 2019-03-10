@@ -1,7 +1,7 @@
 type CompletePhoneVerificationResponse{
   ok: Boolean!
-  error: String!
-  token: String!
+  error: String
+  token: String
 }
 
 type Mutation { 
