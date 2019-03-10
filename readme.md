@@ -12,10 +12,13 @@ Typescript, Nodejs, Graphql, Apollo로 만든 Uber 클론
 - [ ] 문자 인증 완료 
 ---
 
-### Private Resolvers 
-
+### Authentication
 - [ ] Token 생성하기
 - [ ] Token 인증하기 
+
+
+### Private Resolvers 
+
 - [ ] 이메일 인증하기 
 - [ ] 사용자 프로필 조회 
 - [ ] 사용자 프로필 업데이트 
