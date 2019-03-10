@@ -4,6 +4,7 @@ import {
 } from "../../../types/graphql";
 import { Resolvers } from "../../../types/resolvers";
 import User from "../../../entities/User";
+import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -17,15 +18,16 @@ const resolvers: Resolvers = {
         if (existingUser) {
           return {
             ok: false,
-            error: "You should login instead",
+            error: "이미 존재하는 계정입니다. 로그인해주세요.",
             token: null
           };
         } else {
           const newUser = await User.create({ ...args }).save();
+          const token = createJWT(newUser.id)
           return {
             ok: true,
             error: null,
-            token: "Coming soon"
+            token
           };
         }
       } catch (error) {

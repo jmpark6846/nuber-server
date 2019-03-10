@@ -4,6 +4,7 @@ import {
   FacebookConnectResponse
 } from "src/types/graphql";
 import User from "../../../entities/User";
+import createJWT from "../../../utils/createJWT";
 
 const resolvers: Resolvers = {
   Mutation: {
@@ -16,10 +17,11 @@ const resolvers: Resolvers = {
         // 만약 이미 fbId 로 가입한 유저라면 로그인 한다.
         const existingUser = await User.findOne({ fbId });
         if (existingUser) {
+          const token = createJWT(existingUser.id)
           return {
             ok: true,
             error: null,
-            token: "coming soon, already"
+            token
           };
         }
       } catch (error) {
@@ -32,15 +34,15 @@ const resolvers: Resolvers = {
 
       // 만약 없는 fbId 일 경우 유저를 생성한다.
       try {
-        await User.create({
+        const newUser = await User.create({
           ...args,
           profilePhoto: `http://graph.facebook.com/${fbId}/picture?type=square`
         }).save();
-
+        const token = createJWT(newUser.id)
         return {
           ok: true,
           error: null,
-          token: "coming soon, created"
+          token
         };
       } catch (error) {
         return {
