@@ -7,13 +7,13 @@ Typescript, Nodejs, Graphql, Apollo로 만든 Uber 클론
 
 - [x] 페이스북 로그인 / 회원가입
 - [x] 이메일 로그인
-- [ ] 이메일 회원가입 
+- [x] 이메일 회원가입 
 - [x] 인증 문자 보내기
-- [ ] 문자 인증 완료 
+- [x] 문자 인증 완료 
 ---
 
 ### Authentication
-- [ ] Token 생성하기
+- [x] Token 생성하기
 - [ ] Token 인증하기 
 
 
