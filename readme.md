@@ -14,13 +14,15 @@ Typescript, Nodejs, Graphql, Apollo로 만든 Uber 클론
 
 ### Authentication
 - [x] Token 생성하기
-- [ ] Token 인증하기 
+- [x] Token 인증하기 
 
 
 ### Private Resolvers 
 
 - [ ] 이메일 인증하기 
-- [ ] 사용자 프로필 조회 
+- [ ] 인증 이메일 요청하기
+- [ ] 
+- [x] 사용자 프로필 조회 
 - [ ] 사용자 프로필 업데이트 
 - [ ] 운전 모드 변환하기
 - [ ] 위치/방향 전송하기(실시간) 
