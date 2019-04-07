@@ -1,6 +1,9 @@
 import { Resolvers } from "../../../types/resolvers";
 import privateResolver from "../../../utils/authMiddleware";
-import { EditPlaceMutationArgs, EditPlaceResponse } from "../../../types/graphql";
+import {
+  EditPlaceMutationArgs,
+  EditPlaceResponse
+} from "../../../types/graphql";
 import User from "../../../entities/User";
 import Place from "../../../entities/Place";
 import cleanNullArgs from "../../../utils/cleanNullArgs";
