@@ -1,42 +1,38 @@
 import { Resolvers } from "../../../types/resolvers";
 import privateResolver from "../../../utils/authMiddleware";
 import {
-  UpdateMyProfileMutationArgs,
-  UpdateMyProfileResponse
+  ReportMovementResponse,
+  ReportMovementMutationArgs
 } from "../../../types/graphql";
 import User from "../../../entities/User";
 import cleanNullArgs from "../../../utils/cleanNullArgs";
 
 const resolvers: Resolvers = {
   Mutation: {
-    UpdateMyProfile: privateResolver(
+    ReportMovement: privateResolver(
       async (
         _,
-        args: UpdateMyProfileMutationArgs,
+        args: ReportMovementMutationArgs,
         { req }
-      ): Promise<UpdateMyProfileResponse> => {
+      ): Promise<ReportMovementResponse> => {
         const user: User = req.user;
-        const notNull = cleanNullArgs(args)
-
-        try{
-          if(args.password !== null){
-            user.password = args.password;
-            user.save()
-          }
+        const notNull = cleanNullArgs(args);
+        try {
           await User.update({ id: user.id }, { ...notNull });
           return {
             ok: true,
-            error: null,
-          }
-        }catch(error){
+            error: null
+          };
+        } catch (error) {
           return {
             ok: false,
             error: error.message
-          }
+          };
         }
       }
     )
   }
 };
+
 
 export default resolvers;
