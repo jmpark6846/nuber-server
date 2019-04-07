@@ -1,12 +1,12 @@
 import { Resolvers } from "../../../types/resolvers";
 import privateResolver from "../../../utils/authMiddleware";
-import { AddPlaceMutatationArgs, AddPlaceResponse } from "../../../types/graphql";
+import { AddPlaceResponse, AddPlaceMutationArgs } from "../../../types/graphql";
 import User from "../../../entities/User";
 import Place from "../../../entities/Place";
 
 const resolvers: Resolvers = {
   Mutation: {
-    AddPlace: privateResolver(async(_, args: AddPlaceMutatationArgs, { req }): Promise<AddPlaceResponse> => {
+    AddPlace: privateResolver(async(_, args: AddPlaceMutationArgs, { req }): Promise<AddPlaceResponse> => {
       const user: User = req.user;
       try{
         await Place.create({...args, user }).save()

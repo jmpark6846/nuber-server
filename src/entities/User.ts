@@ -76,7 +76,7 @@ class User extends BaseEntity {
   lastOrientation: number;
 
   @ManyToOne(type => Chat, chat => chat.participants)
-  chat: Chat;
+  chat: Chat[];
 
   @OneToMany(type => Message, message => message.user)
   messages: Message[];

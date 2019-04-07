@@ -1,25 +1,26 @@
 import { Resolvers } from "../../../types/resolvers";
 import privateResolver from "../../../utils/authMiddleware";
-import { EditPlaceMutationArgs, EditPlaceResponse } from "../../../types/graphql";
+import {
+  DeletePlaceMutationArgs,
+  DeletePlaceResponse
+} from "../../../types/graphql";
 import User from "../../../entities/User";
 import Place from "../../../entities/Place";
-import cleanNullArgs from "../../../utils/cleanNullArgs";
 
 const resolvers: Resolvers = {
   Mutation: {
-    EditPlace: privateResolver(
+    DeletePlace: privateResolver(
       async (
         _,
-        args: EditPlaceMutationArgs,
+        args: DeletePlaceMutationArgs,
         { req }
-      ): Promise<EditPlaceResponse> => {
+      ): Promise<DeletePlaceResponse> => {
         const user: User = req.user;
         try {
           const place = await Place.findOne({ id: args.id });
           if (place) {
             if (place.userId === user.id) {
-              const notNull = cleanNullArgs(args);
-              await Place.update({ id: place.id }, { ...notNull });
+              await place.remove();
               return {
                 ok: true,
                 error: null
@@ -33,7 +34,7 @@ const resolvers: Resolvers = {
           } else {
             return {
               ok: false,
-              error: "존재하지 않습니다."
+              error: "찾을 수 없습니다."
             };
           }
         } catch (error) {
