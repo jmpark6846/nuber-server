@@ -17,6 +17,6 @@ const sendEmail = (subject: string, html: string) => {
 
 export const sendVerificationEmail = (fullname: string, key: string) => {
   const subject = `${fullname}님 이메일을 인증해주세요.`;
-  const body = `<a>이 곳</a>을 클릭해서 이메일을 인증해주세요.`;
+  const body = `<a href="http://nuber.com/verfication/${key}/">이 곳</a>을 클릭해서 이메일을 인증해주세요.`;
   return sendEmail(subject, body);
 };
