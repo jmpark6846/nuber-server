@@ -32,8 +32,8 @@ Typescript, Nodejs, Graphql, Apollo로 만든 Uber 클론
 - [x] 장소 삭제하기 
 - [x] 근처 운전자 보여주기 
 - [x] 근처 운전자 subscribe 하기 
-- [ ] 차량 요청하기
-- [ ] 근처 차량 요청 받기
+- [x] 차량 요청하기
+- [x] 근처 차량 요청 받기
 - [ ] 근처 차량 요청에 subscribe 하기 
 - [ ] 차량 상태 subscribe 하기
 - [ ] 채팅방 메세지 받기 

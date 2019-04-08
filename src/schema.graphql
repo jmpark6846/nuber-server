@@ -77,7 +77,7 @@ type Place {
 type GetNearbyRidesResponse {
   ok: Boolean!
   error: String
-  ride: [Ride]
+  ride: Ride
 }
 
 type RequestRideResponse {
