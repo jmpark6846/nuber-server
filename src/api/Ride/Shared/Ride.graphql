@@ -9,8 +9,12 @@ type Ride{
   price: Float!
   duration: String!
   distance: String!
-  passenger: User
+  passenger: User!
+  passengerId: Int!
   driver: User
+  driverId: Int
+  chatId: Int
+  chat: Chat
   createdAt: String!
   updatedAt: String
 }

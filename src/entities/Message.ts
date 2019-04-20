@@ -13,6 +13,10 @@ import User from "./User";
 @Entity()
 class Message extends BaseEntity {
   @PrimaryGeneratedColumn() id: number;
+
+  @Column({ nullable: true })
+  chatId: number;
+
   @ManyToOne(type => Chat, chat => chat.messages)
   chat: Chat;
 

@@ -9,13 +9,13 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  ManyToOne,
-  OneToMany
+  OneToMany,
+  ManyToOne
 } from "typeorm";
 import Chat from "./Chat";
-import Message from "./Message";
 import Ride from "./Ride";
 import Place from "./Place";
+import Message from "./Message";
 
 const BCRYPT_ROUNDS = 10;
 
@@ -75,8 +75,11 @@ class User extends BaseEntity {
   @Column({ type: "double precision", default: 0 })
   lastOrientation: number;
 
-  @ManyToOne(type => Chat, chat => chat.participants)
-  chat: Chat[];
+  @ManyToOne(type => Chat, chat => chat.passenger)
+  chatAsPassenger: Chat[];
+
+  @ManyToOne(type => Chat, chat => chat.driver)
+  chatAsDriver: Chat[];
 
   @OneToMany(type => Message, message => message.user)
   messages: Message[];

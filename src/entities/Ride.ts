@@ -6,9 +6,12 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  ManyToOne
+  ManyToOne,
+  OneToOne,
+  JoinColumn
 } from "typeorm";
 import User from "./User";
+import Chat from "./Chat";
 
 @Entity()
 class Ride extends BaseEntity {
@@ -17,7 +20,7 @@ class Ride extends BaseEntity {
   @Column({
     type: "text",
     enum: ["ACCEPTED", "FINISHED", "CANCELED", "REQUESTING", "ONROUTE"],
-    default:"ACCEPTED"
+    default: "REQUESTING"
   })
   status: rideStatus;
 
@@ -45,26 +48,24 @@ class Ride extends BaseEntity {
   @Column({ type: "text" })
   distance: string;
 
-  @Column({ type: "text" })
-  name: string;
-
-  @Column({ type: "double precision", default: 0 })
-  lat: number;
-
-  @Column({ type: "double precision", default: 0 })
-  lng: number;
-
-  @Column({ type: "text" })
-  address: number;
-
-  @Column({ type: "boolean" })
-  isFavorite: number;
+  @Column({ nullable: true })
+  passengerId: number;
 
   @ManyToOne(type => User, user => user.rideAsPassenger)
   passenger: User;
 
+  @Column({ nullable: true })
+  driverId: number;
+
   @ManyToOne(type => User, user => user.rideAsDriver, { nullable: true })
   driver: User;
+
+  @Column({ nullable: true })
+  chatId: number;
+  
+  @OneToOne(type => Chat, chat => chat.ride, { nullable: true })
+  @JoinColumn()
+  chat: Chat
   
   @CreateDateColumn()
   createdAt: string;
